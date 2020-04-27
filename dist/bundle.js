@@ -123,10 +123,10 @@ var api = __webpack_require__(2);
               content = [[module.i, content, '']];
             }
 
-var options = {};
+var options = {"injectType":"singletonStyleTag"};
 
 options.insert = "head";
-options.singleton = false;
+options.singleton = true;
 
 var update = api(content, options);
 
@@ -535,10 +535,10 @@ var api = __webpack_require__(2);
               content = [[module.i, content, '']];
             }
 
-var options = {};
+var options = {"injectType":"singletonStyleTag"};
 
 options.insert = "head";
-options.singleton = false;
+options.singleton = true;
 
 var update = api(content, options);
 
