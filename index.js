@@ -1,5 +1,6 @@
 import "normalize.css";
 import styles from "./index.css";
+import $ from "jquery";
 
 function component() {
   const element = document.createElement("div");
