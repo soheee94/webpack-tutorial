@@ -9,7 +9,7 @@ const webpack = require("webpack");
 const isProduction = process.env.NODE_ENV === "PRODUCTION";
 
 module.exports = {
-  entry: "./index.js",
+  entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[chunkhash].js" //hash, contenthash, chunkhash
@@ -38,6 +38,24 @@ module.exports = {
       {
         test: /\.hbs$/,
         use: ["handlebars-loader"]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name() {
+                if (!isProduction) {
+                  return "[path][name].[ext]";
+                }
+                return "[contenthash].[ext]";
+              },
+              publicPath: "assets/",
+              outputPath: "assets/"
+            }
+          }
+        ]
       }
     ]
   },

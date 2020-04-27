@@ -1,49 +1,23 @@
-// /*
-//  * 1. 원의 넓이를 구하는 공식
-//  * 2. PI 정의
-//  * 3. 공식을 통해 결과 얻기
-//  */
+import "normalize.css";
+import styles from "./index.css";
+import $ from "jquery";
+import logo from "./assets/logo.png";
 
-// // commonjs
-// // const { getCircleArea } = require("./mathUtil");
+function component() {
+  const element = document.createElement("div");
+  element.innerHTML = "Hello Webpack";
 
-// // esm
-// // import { getCircleArea } from "./mathUtil";
-// // export default로 사용했을 경우
-// import mathUtil from "./mathUtil";
+  console.log(styles);
+  element.classList = styles.helloWebpack;
 
-// const result = mathUtil.getCircleArea(2);
-// console.log(result);
+  const imgElement = document.createElement("img");
+  imgElement.src = logo;
 
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+  element.appendChild(imgElement);
 
-const { logInput, logResult, logFigureError } = require("./log");
-const { getCircleArea, getSquareArea } = require("./mathUtil");
+  return element;
+}
 
-rl.question("원하는 도형을 입력해주세요. (정사각형, 원)", figure => {
-  console.log(`선택된 도형 : ${figure}`);
+console.log(IS_PRODUCTION);
 
-  switch (figure) {
-    case "정사각형":
-      rl.question("변의 길이를 입력해주세요 : ", input => {
-        console.log(logInput(input));
-        console.log(logResult(figure, getCircleArea(input)));
-        rl.close();
-      });
-      break;
-    case "원":
-      rl.question("변의 길이를 입력해주세요 : ", input => {
-        console.log(logInput(input));
-        console.log(logResult(figure, getSquareArea(input)));
-        rl.close();
-      });
-      break;
-    default:
-      console.log(logFigureError);
-      rl.close();
-  }
-});
+document.body.appendChild(component());

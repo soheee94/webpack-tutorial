@@ -5,7 +5,7 @@ const config = {
   mode: "development",
   devServer: {
     // new open tab
-    open: true,
+    open: false,
     // error 가 브라우저 화면에 나타남
     overlay: true,
     // 라우팅 예외처리 (SPA 사용하는 경우)
