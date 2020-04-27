@@ -12,4 +12,6 @@ function component() {
   return element;
 }
 
+console.log(IS_PRODUCTION);
+
 document.body.appendChild(component());
