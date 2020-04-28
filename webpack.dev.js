@@ -1,5 +1,7 @@
 const merge = require("webpack-merge");
 const common = require("./webpack.common");
+// lint는 개발환경에서만 사용되므로 개발 파일에 적용시켜 준다.
+const StyleLintPlugin = require("stylelint-webpack-plugin");
 
 const config = {
   mode: "development",
@@ -16,7 +18,8 @@ const config = {
       ]
     },
     port: 3333
-  }
+  },
+  plugins: [new StyleLintPlugin()]
 };
 
 module.exports = merge(common, config);
