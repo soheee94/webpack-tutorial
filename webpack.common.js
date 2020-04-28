@@ -15,23 +15,34 @@ module.exports = {
     filename: "[name].[chunkhash].js" //hash, contenthash, chunkhash
   },
   module: {
+    // filenmae.moudle.scss => css modules, //filename.scss => global
     rules: [
       {
-        test: /\.css$/i,
-        use: [
-          // css-loader는 css 파일들을 읽어주고
-          // style-loader는 읽은 css 파일들을 style 태그로 만들어 head 태그 안에 넣어줍니다.
-          // { loader: "style-loader", options: { injectType: "singletonStyleTag" } },
-          // style-loader와 하는 일이 비슷해서 충돌될 경우를 방지
+        test: /\.s?css$/,
+        // 조건 걸어주기
+        oneOf: [
           {
-            loader: MiniCssExtractPlugin.loader
+            test: /\.module\.s?css$/,
+            use: [
+              // css-loader는 css 파일들을 읽어주고
+              // style-loader는 읽은 css 파일들을 style 태그로 만들어 head 태그 안에 넣어줍니다.
+              // { loader: "style-loader", options: { injectType: "singletonStyleTag" } },
+              // style-loader와 하는 일이 비슷해서 충돌될 경우를 방지
+              {
+                loader: MiniCssExtractPlugin.loader
+              },
+              {
+                loader: "css-loader",
+                options: {
+                  // javascript 내에서 불러와서 사용할 수 있음
+                  modules: true
+                }
+              },
+              "sass-loader"
+            ]
           },
           {
-            loader: "css-loader",
-            options: {
-              // javascript 내에서 불러와서 사용할 수 있음
-              modules: true
-            }
+            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
           }
         ]
       },
@@ -53,6 +64,18 @@ module.exports = {
               },
               publicPath: "assets/",
               outputPath: "assets/"
+            }
+          }
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              // 파일크기 제한(~8kb)
+              limit: 8192
             }
           }
         ]

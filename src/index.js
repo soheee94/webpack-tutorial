@@ -2,6 +2,7 @@ import "normalize.css";
 import styles from "./index.css";
 import $ from "jquery";
 import logo from "./assets/logo.png";
+import fail from "./assets/fail.svg";
 
 function component() {
   const element = document.createElement("div");
@@ -11,7 +12,7 @@ function component() {
   element.classList = styles.helloWebpack;
 
   const imgElement = document.createElement("img");
-  imgElement.src = logo;
+  imgElement.src = fail;
 
   element.appendChild(imgElement);
 
