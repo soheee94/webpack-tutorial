@@ -1,5 +1,5 @@
 import "normalize.css";
-import styles from "./index.css";
+import styles from "./index.module.scss";
 import $ from "jquery";
 import logo from "./assets/logo.png";
 import fail from "./assets/fail.svg";
@@ -13,6 +13,7 @@ function component() {
 
   const imgElement = document.createElement("img");
   imgElement.src = fail;
+  imgElement.classList = styles.slackImg;
 
   element.appendChild(imgElement);
 
